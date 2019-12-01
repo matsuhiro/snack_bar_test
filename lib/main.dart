@@ -98,6 +98,14 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  void _showSnackbar(BuildContext ctx) {
+    final snackBar = SnackBar(
+      content: Text('You will not face error.'),
+    );
+
+    Scaffold.of(ctx).showSnackBar(snackBar);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -119,12 +127,16 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          _incrementCounter();
+      floatingActionButton: Builder(
+        builder: (BuildContext ctx) {
+          return FloatingActionButton(
+            onPressed: () {
+              _showSnackbar(ctx);
+            },
+            tooltip: 'Increment',
+            child: Icon(Icons.add),
+          );
         },
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
       ),
     );
   }
